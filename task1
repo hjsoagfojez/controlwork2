@@ -1,0 +1,22 @@
+import numpy as np
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+fig = plt.figure(figsize=(10, 8))
+ax = fig.add_subplot(111, projection='3d')
+R = 2.0 
+r = 0.5  
+resolution = 50
+absolute = np.linspace(0, 2*np.pi, resolution)
+phi = np.linspace(0, 2*np.pi, resolution)
+Absolute, Phi = np.meshgrid(absolute, phi)
+X = (R + r * np.cos(Absolute)) * np.cos(Phi)
+Y = (R + r * np.cos(Absolute)) * np.sin(Phi)
+Z = r * np.sin(Absolute)
+ax.plot_surface(X, Y, Z, color='coral', alpha=0.9, rstride=1, cstride=1)
+ax.set_xlim(-(R+r)*1.2, (R+r)*1.2)
+ax.set_ylim(-(R+r)*1.2, (R+r)*1.2)
+ax.set_zlim(-r*1.5, r*1.5)
+ax.set_axis_off()
+ax.set_title('3D Тор (бублик)', pad=20, fontsize=14)
+plt.tight_layout()
+plt.show()
